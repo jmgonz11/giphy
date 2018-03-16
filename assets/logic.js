@@ -1,19 +1,19 @@
 $(document).ready(function(){
 
-    var buttonsMade = ["Doug the Pug", "Golden Retriver", "French Bulldog"];
+    var topics = ["Doug the Pug", "Golden Retriver", "French Bulldog"];
 
 
     function renderButtons(){ 
 
         $("#buttonDisplay").empty();
 
-        for (var i = 0; i < buttonsMade.length; i++){
+        for (var i = 0; i < topics.length; i++){
 
             var inputButton = $("<button>") 
             inputButton.attr("class", "btn btn-default");
             inputButton.attr("id", "input")  
-            inputButton.attr("data-name", buttonsMade[i]); 
-            inputButton.text(buttonsMade[i]); 
+            inputButton.attr("data-name", topics[i]); 
+            inputButton.text(topics[i]); 
             $("#buttonDisplay").append(inputButton); 
         }
     }
@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         var input = $(this).attr("data-name");
 
-        var limit = 10;
+        var limit = 15;
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=dc6zaTOxFJmzC";   
 
@@ -39,14 +39,14 @@ $(document).ready(function(){
                 displayDiv.addClass("holder");
             
                 var image = $("<img>");
-                image.attr("src", response.data[j].images.original_still.url);
-                image.attr("data-still", response.data[j].images.original_still.url);
-                image.attr("data-animate", response.data[j].images.original.url);
+                image.attr("src", response.data[i].images.original_still.url);
+                image.attr("data-still", response.data[i].images.original_still.url);
+                image.attr("data-animate", response.data[i].images.original.url);
                 image.attr("data-state", "still");
                 image.attr("class", "gif");
                 displayDiv.append(image);
 
-                var rating = response.data[j].rating;
+                var rating = response.data[i].rating;
                 console.log(response);
                 var pRating = $("<p>").text("Rating: " + rating);
                 displayDiv.append(pRating)
