@@ -10,13 +10,19 @@ $(document).ready(function(){
         for (var i = 0; i < topics.length; i++){
 
             var inputButton = $("<button>") 
+
             inputButton.attr("class", "btn btn-default");
-            inputButton.attr("id", "input")  
+            inputButton.attr("id", "input");  
             inputButton.attr("data-name", topics[i]); 
             inputButton.text(topics[i]); 
+
             $("#buttonDisplay").append(inputButton); 
+    
+
         }
     }
+
+
 
     function displayImg(){
 
@@ -24,7 +30,7 @@ $(document).ready(function(){
 
         var input = $(this).attr("data-name");
 
-        var limit = 15;
+        var limit = 10;
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=dc6zaTOxFJmzC";   
 
@@ -57,9 +63,7 @@ $(document).ready(function(){
     }
 
 
-
-
-    function moveGif() {          
+function moveGif() {          
 
         var state = $(this).attr("data-state");
         var animateImage = $(this).attr("data-animate");
@@ -83,7 +87,7 @@ $(document).ready(function(){
 
         var input = $("#user-input").val().trim();
         form.reset();
-        buttonsMade.push(input);
+        topics.push(input);
                 
         renderButtons();
 
@@ -94,4 +98,5 @@ $(document).ready(function(){
 
     $(document).on("click", "#input", displayImg);
     $(document).on("click", ".gif", moveGif);
+
 });
